@@ -327,10 +327,11 @@ class ImageViewer(object):
         # is called.
         #
         # see https://github.com/Itseez/opencv/issues/4535
-        self.image[:] = 0
-        cv2.destroyWindow(self._caption)
-        cv2.waitKey(1)
-        cv2.imshow(self._caption, self.image)
+        #self.image[:] = 0
+        #cv2.destroyWindow(self._caption)
+        #cv2.waitKey(1)
+        #cv2.imshow(self._caption, self.image)
+        cv2.destroyAllWindows()
 
     def stop(self):
         """Stop the control loop.

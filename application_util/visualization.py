@@ -109,6 +109,9 @@ class Visualization(object):
     def set_image(self, image):
         self.viewer.image = image
 
+    def show_fps(self, x, y, text):
+        self.viewer.annotate(x, y, text)
+
     def draw_groundtruth(self, track_ids, boxes):
         self.viewer.thickness = 2
         for track_id, box in zip(track_ids, boxes):
