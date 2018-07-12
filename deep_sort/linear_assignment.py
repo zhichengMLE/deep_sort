@@ -6,7 +6,7 @@ from . import kalman_filter
 
 
 INFTY_COST = 1e+5
-
+is_tracker_in_low_prob = False
 
 def min_cost_matching(
         distance_metric, max_distance, tracks, detections, track_indices=None,
@@ -178,6 +178,7 @@ def gate_cost_matrix(
         Returns the modified cost matrix.
 
     """
+    global is_tracker_in_low_prob
     gating_dim = 2 if only_position else 4
     gating_threshold = kalman_filter.chi2inv95[gating_dim]
     measurements = np.asarray(
@@ -187,4 +188,11 @@ def gate_cost_matrix(
         gating_distance = kf.gating_distance(
             track.mean, track.covariance, measurements, only_position)
         cost_matrix[row, gating_distance > gating_threshold] = gated_cost
+        if(is_tracker_in_low_prob == True):
+            continue
+        else:
+            for gating_dis in gating_distance:
+                if(gating_threshold > gating_dis and gating_dis > kalman_filter.chi2inv90[gating_dim
+                ]):
+                    is_tracker_in_low_prob = True
     return cost_matrix

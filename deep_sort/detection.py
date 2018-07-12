@@ -44,6 +44,7 @@ class Detection(object):
         height)`, where the aspect ratio is `width / height`.
         """
         ret = self.tlwh.copy()
+
         ret[:2] += ret[2:] / 2
         ret[2] /= ret[3]
         return ret

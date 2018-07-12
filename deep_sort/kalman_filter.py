@@ -17,8 +17,32 @@ chi2inv95 = {
     6: 12.592,
     7: 14.067,
     8: 15.507,
-    9: 16.919}
+    9: 16.919,
+    }
 
+chi2inv90 = {
+    1: 2.7055,
+    2: 4.6052,
+    3: 6.2514,
+    4: 7.7794,
+    5: 9.2364,
+    6: 10.645,
+    7: 12.017,
+    8: 13.362,
+    9: 14.684,
+}
+
+chi2inv80 = {
+    1: 1.6424,
+    2: 3.2189,
+    3: 4.6416,
+    4: 5.9886,
+    5: 7.2893,
+    6: 8.5581,
+    7: 9.8032,
+    8: 11.030,
+    9: 12.242,
+}
 
 class KalmanFilter(object):
     """
@@ -50,7 +74,7 @@ class KalmanFilter(object):
         # state estimate. These weights control the amount of uncertainty in
         # the model. This is a bit hacky.
         self._std_weight_position = 1. / 20
-        self._std_weight_velocity = 1. / 160
+        self._std_weight_velocity = 1. / 200
 
     def initiate(self, measurement):
         """Create track from unassociated measurement.
