@@ -1,0 +1,6 @@
+python deep_sort_app.py  --sequence_dir=D:/_videos/MOT2017/train/MOT17-02-DPM --detection_file=D:/__Road/_proj/deep_sort/resources/detections/MOT17_train/MOT17-02-DPM.npy  --min_confidence=0.3  --nn_budget=100  --display=True
+
+
+
+
+python tools/generate_detections.py --model=resources/networks/mars-small128.pb --mot_dir=D:/_videos/train/ --output_dir=./resources/detections/MOT17_train
