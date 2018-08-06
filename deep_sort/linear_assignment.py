@@ -179,7 +179,8 @@ def gate_cost_matrix(
 
     """
     global is_tracker_in_low_prob
-    gating_dim = 2 if only_position else 4
+    #gating_dim = 2 if only_position else 4
+    gating_dim = 4
     gating_threshold = kalman_filter.chi2inv95[gating_dim]
     measurements = np.asarray(
         [detections[i].to_xyah() for i in detection_indices])
@@ -192,7 +193,7 @@ def gate_cost_matrix(
             continue
         else:
             for gating_dis in gating_distance:
-                if(gating_threshold > gating_dis and gating_dis > kalman_filter.chi2inv90[gating_dim
+                if(gating_threshold > gating_dis and gating_dis > kalman_filter.chi2inv10[gating_dim
                 ]):
                     is_tracker_in_low_prob = True
     return cost_matrix
